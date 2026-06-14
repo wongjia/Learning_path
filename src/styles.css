@@ -237,7 +237,8 @@ a {
 .pillar-grid,
 .roadmap-grid,
 .library-grid,
-.entry-list {
+.entry-list,
+.calendar-grid {
   display: grid;
   gap: 16px;
 }
@@ -336,6 +337,53 @@ a {
   align-items: start;
 }
 
+.calendar-note {
+  margin: 0 0 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.calendar-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.calendar-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: start;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 252, 247, 0.8);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.calendar-card.active {
+  border-color: rgba(186, 99, 37, 0.4);
+  background:
+    radial-gradient(circle at top right, rgba(241, 208, 178, 0.45), transparent 35%),
+    rgba(255, 248, 240, 0.95);
+}
+
+.calendar-day {
+  color: var(--accent);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.calendar-card strong {
+  font-size: 1rem;
+}
+
+.calendar-card small {
+  color: var(--muted);
+}
+
 .entry-card {
   background:
     linear-gradient(180deg, rgba(255, 252, 247, 0.98), rgba(251, 246, 237, 0.94)),
@@ -391,7 +439,8 @@ a {
   .identity-grid,
   .focus-grid,
   .pillar-grid,
-  .roadmap-grid {
+  .roadmap-grid,
+  .calendar-grid {
     grid-template-columns: 1fr;
   }
 
