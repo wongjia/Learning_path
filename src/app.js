@@ -1,6 +1,7 @@
 import { siteContent } from "./content.js";
 
 const app = document.querySelector("#app");
+let selectedEntrySlug = siteContent.entries.at(-1)?.slug ?? "";
 
 function renderMetric(metric) {
   return `
@@ -73,6 +74,16 @@ function renderEntry(entry, featured = false) {
   `;
 }
 
+function renderCalendarCard(entry, active = false) {
+  return `
+    <button class="calendar-card ${active ? "active" : ""}" data-entry-slug="${entry.slug}" type="button">
+      <span class="calendar-day">${entry.dayLabel || entry.slug}</span>
+      <strong>${entry.date}</strong>
+      <small>${entry.status}</small>
+    </button>
+  `;
+}
+
 function renderFocusArea(item) {
   return `
     <article class="focus-card">
@@ -118,7 +129,10 @@ function renderIdentity() {
 }
 
 function render() {
-  const [today, ...history] = [...siteContent.entries].reverse();
+  const entries = [...siteContent.entries];
+  const currentEntry =
+    entries.find((entry) => entry.slug === selectedEntrySlug) ?? entries.at(-1);
+  const reverseEntries = [...entries].reverse();
 
   app.innerHTML = `
     <main class="page-shell">
@@ -193,7 +207,7 @@ function render() {
           <p class="eyebrow">Today</p>
           <h2>当前学习任务</h2>
         </div>
-        ${renderEntry(today, true)}
+        ${renderEntry(currentEntry, true)}
       </section>
 
       <section class="section-block split-layout">
@@ -209,11 +223,17 @@ function render() {
 
         <div id="log">
           <div class="section-title">
-            <p class="eyebrow">Log</p>
-            <h2>学习日志</h2>
+            <p class="eyebrow">Calendar</p>
+            <h2>学习日历</h2>
+          </div>
+          <p class="calendar-note">${siteContent.calendarNote}</p>
+          <div class="calendar-grid">
+            ${reverseEntries
+              .map((entry) => renderCalendarCard(entry, entry.slug === currentEntry.slug))
+              .join("")}
           </div>
           <div class="entry-list">
-            ${[today, ...history].map((entry, index) => renderEntry(entry, index === 0)).join("")}
+            ${renderEntry(currentEntry, false)}
           </div>
         </div>
       </section>
@@ -223,6 +243,17 @@ function render() {
       </footer>
     </main>
   `;
+
+  bind();
+}
+
+function bind() {
+  document.querySelectorAll("[data-entry-slug]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedEntrySlug = button.getAttribute("data-entry-slug") || selectedEntrySlug;
+      render();
+    });
+  });
 }
 
 render();
