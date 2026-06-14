@@ -100,9 +100,11 @@ export const siteContent = {
     {
       slug: "day-1",
       date: "2026-06-14",
+      dayLabel: "Day 1",
       title: "Day 1｜把后端思维切到 AI 应用开发",
       status: "进行中",
       goal: "补 Python 的 OOP、异常、asyncio 基础，并完成一个纯 Python 版客服服务练习。",
+      summary: "补 Python 基础，完成第一个纯 Python 客服服务练习。",
       tasks: [
         "阅读飞书资料里的 Python：类与对象、继承、异常、asyncio。",
         "阅读《大语言模型基础认知》，先理解 token、context、temperature、system prompt、embedding、RAG、Agent。",
@@ -124,5 +126,7 @@ export const siteContent = {
         "今天只追求结构清晰，不追求回复像真实模型。"
       ]
     }
-  ]
+  ],
+  calendarNote:
+    "后续每天先更新当天任务，完成后再把这一天的状态、实际产出、卡点和总结补进来。点击日期卡片即可切换查看，不需要一直下拉翻历史记录。"
 };
