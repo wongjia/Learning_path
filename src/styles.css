@@ -101,6 +101,11 @@ a {
   color: var(--muted);
 }
 
+.site-nav a.active {
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
 .site-nav a:hover {
   color: var(--accent-deep);
 }
@@ -280,6 +285,27 @@ a {
   margin-top: 30px;
 }
 
+.section-hero {
+  padding: 30px 32px;
+  margin-bottom: 24px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.section-hero h1 {
+  margin: 0 0 10px;
+  font-family: "Iowan Old Style", "Times New Roman", "Songti SC", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.section-hero p:last-child {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
 .section-title {
   margin-bottom: 16px;
 }
@@ -335,6 +361,53 @@ a {
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   gap: 22px;
   align-items: start;
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.portal-card {
+  display: block;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.portal-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+
+.portal-card strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.35rem;
+}
+
+.portal-card p {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.calendar-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.3fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.full-width {
+  grid-template-columns: 1fr;
 }
 
 .calendar-note {
@@ -440,7 +513,9 @@ a {
   .focus-grid,
   .pillar-grid,
   .roadmap-grid,
-  .calendar-grid {
+  .calendar-grid,
+  .portal-grid,
+  .calendar-layout {
     grid-template-columns: 1fr;
   }
 
@@ -469,6 +544,7 @@ a {
 
   .hero-copy,
   .hero-panel,
+  .section-hero,
   .identity-card,
   .metric-card,
   .focus-card,
