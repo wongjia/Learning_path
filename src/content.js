@@ -124,6 +124,13 @@ export const siteContent = {
       notes: [
         "先别急着钻底层原理，当前阶段重点是能把服务搭起来。",
         "今天只追求结构清晰，不追求回复像真实模型。"
+      ],
+      relatedLinks: [
+        {
+          label: "查看 Day 1 练习示例",
+          href: "./exercise-day1.html",
+          description: "包含目录结构、练习要求和代码骨架。"
+        }
       ]
     }
   ],
