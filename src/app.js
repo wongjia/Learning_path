@@ -93,6 +93,26 @@ function renderEntry(entry, featured = false) {
           ${entry.notes.map((item) => `<li>${item}</li>`).join("")}
         </ul>
       </section>
+      ${
+        entry.relatedLinks?.length
+          ? `
+      <section>
+        <h4>相关材料</h4>
+        <div class="related-links">
+          ${entry.relatedLinks
+            .map(
+              (link) => `
+            <a class="related-link-card" href="${link.href}">
+              <strong>${link.label}</strong>
+              <span>${link.description}</span>
+            </a>
+          `
+            )
+            .join("")}
+        </div>
+      </section>`
+          : ""
+      }
     </article>
   `;
 }
@@ -289,11 +309,91 @@ function renderCalendarPage() {
   `;
 }
 
+function renderExerciseDay1Page() {
+  return `
+    ${renderHeader()}
+    ${renderSectionHero(
+      "Day 1 练习示例",
+      "这个页面专门解释 Day 1 的纯 Python 小练习，让你知道要写什么、为什么这么拆，以及最低完成标准。"
+    )}
+    <section class="exercise-layout">
+      <article class="exercise-card">
+        <p class="eyebrow">Goal</p>
+        <h2>练习目标</h2>
+        <ul>
+          <li>学会用 class 封装业务逻辑，而不是把代码都堆在入口文件里。</li>
+          <li>学会用自定义异常处理非法输入。</li>
+          <li>提前建立 AI 应用后端最基础的分层意识。</li>
+        </ul>
+      </article>
+
+      <article class="exercise-card">
+        <p class="eyebrow">Structure</p>
+        <h2>建议目录</h2>
+        <pre><code>day1/
+  app.py
+  models.py
+  services.py
+  exceptions.py</code></pre>
+      </article>
+
+      <article class="exercise-card">
+        <p class="eyebrow">Requirement</p>
+        <h2>你要实现什么</h2>
+        <ul>
+          <li>定义 <code>ChatRequest</code>，包含 <code>user_id</code>、<code>session_id</code>、<code>message</code>。</li>
+          <li>定义 <code>InvalidMessageError</code> 自定义异常。</li>
+          <li>定义 <code>ChatService</code>，至少包含 <code>validate_message()</code>、<code>build_prompt()</code>、<code>reply()</code>。</li>
+          <li>输入为空时报错，输入过长时报错，输入正常时返回一段模拟客服回复。</li>
+        </ul>
+      </article>
+
+      <article class="exercise-card full-span">
+        <p class="eyebrow">Starter</p>
+        <h2>代码骨架</h2>
+        <pre><code>from dataclasses import dataclass
+
+
+@dataclass
+class ChatRequest:
+    user_id: str
+    session_id: str
+    message: str</code></pre>
+        <pre><code>class InvalidMessageError(Exception):
+    """Raised when the user message is invalid."""</code></pre>
+        <pre><code>class ChatService:
+    MAX_MESSAGE_LENGTH = 200
+
+    def validate_message(self, message: str) -> None:
+        pass
+
+    def build_prompt(self, request: ChatRequest) -> str:
+        pass
+
+    def reply(self, request: ChatRequest) -> str:
+        pass</code></pre>
+      </article>
+
+      <article class="exercise-card full-span">
+        <p class="eyebrow">Expected</p>
+        <h2>最低完成标准</h2>
+        <ul>
+          <li>你能自己跑通一个最小的 Python 脚本。</li>
+          <li>你能解释为什么要拆成 <code>models / services / exceptions</code>。</li>
+          <li>你能说清这个练习和后面 AI 客服助手项目的关系。</li>
+        </ul>
+        <a class="back-link" href="./today.html">返回当天任务</a>
+      </article>
+    </section>
+  `;
+}
+
 function renderPage() {
   if (currentPage === "roadmap") return renderRoadmapPage();
   if (currentPage === "today") return renderTodayPage();
   if (currentPage === "library") return renderLibraryPage();
   if (currentPage === "calendar") return renderCalendarPage();
+  if (currentPage === "exercise-day1") return renderExerciseDay1Page();
   return renderHome();
 }
 
