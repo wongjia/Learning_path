@@ -3,19 +3,19 @@ export const siteContent = {
     title: "AI 求职实验室",
     subtitle: "从 Python 后端到 AI 应用工程师的 8 周公开转型",
     intro:
-      "这里记录我用两个月冲刺中级 AI 应用工程师的全过程。主线项目聚焦 AI 客服助手，学习方式是边学边做，用一个能上线的项目把 LLM、RAG、Agent 和工程化真正串起来。",
+      "这里记录我用两个月冲刺中级 AI 应用工程师的全过程。主线项目是 AI 叉车售后客服系统，用维修工单、设备手册知识库和 Agent 辅助诊断串起 LLM、RAG 与后端工程化。",
     badge: "Open Build · 2026"
   },
   identity: {
     role: "Python 后端开发者",
     target: "中级 AI 应用工程师",
-    project: "AI 客服助手",
-    method: "每日 4 小时，边学边做"
+    project: "AI 叉车售后客服系统",
+    method: "公司 1 小时理论 + 回家 4 小时实践"
   },
   metrics: [
     { label: "准备周期", value: "8 周" },
-    { label: "每日投入", value: "4 小时" },
-    { label: "主项目", value: "AI 客服助手" },
+    { label: "每日投入", value: "5 小时" },
+    { label: "主项目", value: "叉车售后客服" },
     { label: "当前阶段", value: "Python / LLM 基础" }
   ],
   focusAreas: [
@@ -99,31 +99,32 @@ export const siteContent = {
   entries: [
     {
       slug: "day-1",
-      date: "2026-06-14",
+      date: "2026-06-22",
       dayLabel: "Day 1",
-      title: "Day 1｜把后端思维切到 AI 应用开发",
+      title: "Day 1｜Python 回炉与维修工单领域建模",
       status: "进行中",
-      goal: "补 Python 的 OOP、异常、asyncio 基础，并完成一个纯 Python 版客服服务练习。",
-      summary: "补 Python 基础，完成第一个纯 Python 客服服务练习。",
+      goal: "复习 Python 高级语法，完成维修工单状态模型，并读懂 DRF 与结构化日志的请求链路。",
+      summary: "从 Python 领域模型出发，建立叉车售后系统第一条可验证的工程链路。",
       tasks: [
-        "阅读飞书资料里的 Python：类与对象、继承、异常、asyncio。",
-        "阅读《大语言模型基础认知》，先理解 token、context、temperature、system prompt、embedding、RAG、Agent。",
-        "完成 day1 小练习：实现 ChatRequest、InvalidMessageError、ChatService。",
-        "写一段不超过 150 字的总结：AI 应用工程师和普通 Python 后端的区别。"
+        "公司理论（60 分钟）：闭卷复述类与对象、装饰器、生成器、上下文管理器，制作 4 张概念卡。",
+        "实践一（90 分钟）：实现 RepairOrder、WorkOrderStatus、InvalidStatusTransition，并补 3 个 pytest 测试。",
+        "实践二（90 分钟）：追踪 Router → ViewSet → Serializer → Model → SQL，画出任务查询链路。",
+        "实践三（60 分钟）：运行 Django 测试，通过 X-Request-ID 定位结构化日志并记录排错过程。"
       ],
       deliverables: [
-        "一个可运行的纯 Python 小练习目录",
-        "对 LLM / RAG / Agent 的初步理解",
-        "第一篇学习总结"
+        "4 张 Python 概念卡：定义、最小示例、叉车业务用途",
+        "RepairOrder 代码、3 个测试及测试结果",
+        "一张 DRF 请求链路图",
+        "2 条结构化日志与一份排错记录"
       ],
       reviewQuestions: [
-        "为什么业务逻辑不应该全部写在 app.py 入口里？",
-        "RAG 和 Prompt Engineering 的区别是什么？",
-        "为什么客服场景里很多时候单靠 prompt 不够？"
+        "为什么状态流转规则应该放在领域模型或服务层，而不是 View 中？",
+        "Router、ViewSet、Serializer、Model 各自承担什么职责？",
+        "X-Request-ID 将来如何帮助排查 Agent 与 RAG 的跨服务问题？"
       ],
       notes: [
-        "先别急着钻底层原理，当前阶段重点是能把服务搭起来。",
-        "今天只追求结构清晰，不追求回复像真实模型。"
+        "先独立完成，再对照提交案例；不要直接复制示例代码。",
+        "Agent 后续只负责辅助诊断和生成草稿，工单最终提交仍由维修人员确认。"
       ],
       relatedLinks: [
         {
