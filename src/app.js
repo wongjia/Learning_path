@@ -1,4 +1,4 @@
-import { siteContent } from "./content.js?v=20260622-day1";
+import { siteContent } from "./content.js?v=20260624-day1";
 
 const app = document.querySelector("#app");
 const currentPage = document.body.dataset.page || "home";
@@ -314,82 +314,83 @@ function renderExerciseDay1Page() {
     ${renderHeader()}
     ${renderSectionHero(
       "Day 1 提交案例",
-      "先独立完成，再用这里的结构核对。今天先把未来 Agent 必须遵守的维修工单业务边界写进代码。"
+      "先独立完成，再用这里核对最低标准。今天的重点是把 Python 基础写成可运行代码，并开始理解 AI 客服的业务边界。"
     )}
     <section class="exercise-layout">
       <article class="exercise-card">
         <p class="eyebrow">Goal</p>
         <h2>练习目标</h2>
         <ul>
-          <li>用 Enum、dataclass 和自定义异常表达业务规则。</li>
-          <li>理解 DRF 请求如何经过 Router、ViewSet、Serializer 和 Model。</li>
-          <li>通过 X-Request-ID 串联一次请求的结构化日志。</li>
+          <li>说清生成器、迭代器和自定义异常。</li>
+          <li>完成平方生成器与纯 Python 客服服务。</li>
+          <li>把业务问题转成后续可用的 RAG 测试问题。</li>
         </ul>
       </article>
 
       <article class="exercise-card">
         <p class="eyebrow">Structure</p>
         <h2>建议目录</h2>
-        <pre><code>day1_repair_order/
-  domain.py
+        <pre><code>day1_customer_service/
+  models.py
   exceptions.py
-  test_domain.py
-  notes.md</code></pre>
+  services.py
+  app.py
+  test_services.py</code></pre>
       </article>
 
       <article class="exercise-card">
         <p class="eyebrow">Requirement</p>
         <h2>你要实现什么</h2>
         <ul>
-          <li>定义 <code>WorkOrderStatus</code>：<code>DRAFT</code>、<code>OPENED</code>。</li>
-          <li>定义 <code>RepairOrder</code>：工单号、故障描述和状态。</li>
-          <li>只允许 <code>DRAFT → OPENED</code>，提交后禁止修改故障描述。</li>
-          <li>写 3 个测试：正常提交、重复提交、提交后修改失败。</li>
+          <li>实现 <code>square_numbers(n)</code>，逐个 yield 1~n 的平方。</li>
+          <li>定义 <code>ChatRequest</code> 与 <code>InvalidMessageError</code>。</li>
+          <li>校验空消息和超长消息，并按关键词返回不同回复。</li>
+          <li>至少覆盖维修工单、状态查询、评价签字和兜底回复。</li>
         </ul>
       </article>
 
       <article class="exercise-card full-span">
         <p class="eyebrow">Starter</p>
         <h2>代码骨架</h2>
+        <pre><code>def square_numbers(n):
+    for number in range(1, n + 1):
+        yield number ** 2
+
+generator = square_numbers(3)
+print(next(generator))  # 1
+print(next(generator))  # 4</code></pre>
         <pre><code>from dataclasses import dataclass
-from enum import StrEnum
 
-class WorkOrderStatus(StrEnum):
-    DRAFT = "draft"
-    OPENED = "opened"
-
-class InvalidStatusTransition(ValueError):
+class InvalidMessageError(ValueError):
     pass
 
 @dataclass
-class RepairOrder:
-    order_no: str
-    fault_description: str
-    status: WorkOrderStatus = WorkOrderStatus.DRAFT
+class ChatRequest:
+    user_id: str
+    message: str
 
-    def update_fault(self, description: str) -> None:
-        if self.status != WorkOrderStatus.DRAFT:
-            raise InvalidStatusTransition("opened order is immutable")
-        self.fault_description = description.strip()
+class ChatService:
+    MAX_MESSAGE_LENGTH = 200
 
-    def open(self) -> None:
-        if self.status != WorkOrderStatus.DRAFT:
-            raise InvalidStatusTransition("only draft order can be opened")
-        if not self.fault_description.strip():
-            raise ValueError("fault description is required")
-        self.status = WorkOrderStatus.OPENED</code></pre>
+    def validate_message(self, message: str) -> None:
+        # TODO: 校验空消息和超长消息
+        pass
+
+    def reply(self, request: ChatRequest) -> str:
+        # TODO: 根据关键词返回回复，并提供兜底回答
+        pass</code></pre>
       </article>
 
       <article class="exercise-card full-span">
         <p class="eyebrow">Submission</p>
         <h2>提交模板</h2>
         <pre><code>## Day 1 学习提交
-- Python 概念卡：4 张
-- RepairOrder：代码位置 + pytest 结果
-- DRF 链路：Router → ViewSet → Serializer → Model → SQL
-- 日志排错：request_id、关键日志、定位结论
-- 未解决问题：最多 3 条
-- 今日复盘：100～150 字</code></pre>
+1. 生成器练习代码：
+2. ChatService 是否跑通：
+3. 我对生成器、迭代器、自定义异常的理解：
+4. 10 个叉车售后高频问题：
+5. AI chat service 应放在哪一层及理由：
+6. 今天最卡的点：</code></pre>
         <a class="back-link" href="./today.html">返回当天任务</a>
       </article>
     </section>
