@@ -10,11 +10,11 @@ export const siteContent = {
     role: "Python 后端开发者",
     target: "中级 AI 应用工程师",
     project: "AI 叉车售后客服系统",
-    method: "公司 1 小时理论 + 回家 4 小时实践"
+    method: "每日 4 小时 · 稳中偏冲"
   },
   metrics: [
     { label: "准备周期", value: "8 周" },
-    { label: "每日投入", value: "5 小时" },
+    { label: "每日投入", value: "4 小时" },
     { label: "主项目", value: "叉车售后客服" },
     { label: "当前阶段", value: "Python / LLM 基础" }
   ],
@@ -34,16 +34,16 @@ export const siteContent = {
   ],
   pillars: [
     {
-      title: "我要补齐什么",
-      items: ["OOP / asyncio / FastAPI", "Prompt / Structured Output", "RAG / Agent / LangGraph"]
+      title: "60% 稳扎稳打",
+      items: ["补 Python / Django 基础", "推进叉车客服主线", "形成可复用工程能力"]
     },
     {
-      title: "我要产出什么",
-      items: ["1 个主项目", "持续更新的学习博客", "可直接投递的简历素材"]
+      title: "30% 实战推进",
+      items: ["每天写代码", "每天留下可验证产出", "持续积累求职作品"]
     },
     {
-      title: "我怎么判断学会了",
-      items: ["能讲清原理", "能独立写服务", "能解释选型和优化思路"]
+      title: "10% 轻度拔高",
+      items: ["提前接触下一阶段", "加入面试表达", "根据前一天提交动态调整"]
     }
   ],
   roadmap: [
@@ -99,32 +99,34 @@ export const siteContent = {
   entries: [
     {
       slug: "day-1",
-      date: "2026-06-22",
+      date: "2026-06-24",
       dayLabel: "Day 1",
-      title: "Day 1｜Python 回炉与维修工单领域建模",
+      title: "Day 1｜Python 基础与纯 Python 客服服务",
       status: "进行中",
-      goal: "复习 Python 高级语法，完成维修工单状态模型，并读懂 DRF 与结构化日志的请求链路。",
-      summary: "从 Python 领域模型出发，建立叉车售后系统第一条可验证的工程链路。",
+      goal: "在 4 小时内补生成器、迭代器与异常基础，完成两个代码练习，并建立叉车售后问题清单。",
+      summary: "稳中偏冲的第一天：基础讲清、代码跑通、业务问题落纸。",
       tasks: [
-        "公司理论（60 分钟）：闭卷复述类与对象、装饰器、生成器、上下文管理器，制作 4 张概念卡。",
-        "实践一（90 分钟）：实现 RepairOrder、WorkOrderStatus、InvalidStatusTransition，并补 3 个 pytest 测试。",
-        "实践二（90 分钟）：追踪 Router → ViewSet → Serializer → Model → SQL，画出任务查询链路。",
-        "实践三（60 分钟）：运行 Django 测试，通过 X-Request-ID 定位结构化日志并记录排错过程。"
+        "第 1 小时：复习类和对象、异常处理、生成器、迭代器，重点讲清 yield 与 return。",
+        "第 2 小时：实现 square_numbers(n)，逐个 yield 1~n 的平方并验证惰性执行。",
+        "第 3 小时：拆分并跑通 ChatRequest、InvalidMessageError、ChatService。",
+        "第 4 小时：整理 10 个叉车售后高频问题，并判断 AI chat service 应放在哪一层。"
       ],
       deliverables: [
-        "4 张 Python 概念卡：定义、最小示例、叉车业务用途",
-        "RepairOrder 代码、3 个测试及测试结果",
-        "一张 DRF 请求链路图",
-        "2 条结构化日志与一份排错记录"
+        "生成器练习代码与运行结果",
+        "可运行的纯 Python ChatService",
+        "生成器、迭代器、自定义异常的个人理解",
+        "10 个叉车售后高频问题",
+        "AI chat service 分层判断与理由",
+        "今天最卡的点"
       ],
       reviewQuestions: [
-        "为什么状态流转规则应该放在领域模型或服务层，而不是 View 中？",
-        "Router、ViewSet、Serializer、Model 各自承担什么职责？",
-        "X-Request-ID 将来如何帮助排查 Agent 与 RAG 的跨服务问题？"
+        "yield 和 return 的核心区别是什么？",
+        "为什么生成器比一次性构造列表更节省内存？",
+        "API、chat service 与模型 provider 应分别承担什么职责？"
       ],
       notes: [
-        "先独立完成，再对照提交案例；不要直接复制示例代码。",
-        "Agent 后续只负责辅助诊断和生成草稿，工单最终提交仍由维修人员确认。"
+        "任务控制在 4 小时内，代码产出优先，先完成再优化。",
+        "明天是否进入 Django + 通义千问，将根据今天的代码和表达动态决定。"
       ],
       relatedLinks: [
         {
