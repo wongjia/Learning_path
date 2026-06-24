@@ -572,6 +572,19 @@ a {
   margin: 0 0 8px;
 }
 
+.coach-note {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(186, 99, 37, 0.18);
+  border-radius: 18px;
+  background: rgba(241, 208, 178, 0.3);
+}
+
+.coach-note strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
 .site-footer {
   margin-top: 30px;
   border-radius: 24px;

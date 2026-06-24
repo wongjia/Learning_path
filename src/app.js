@@ -1,4 +1,4 @@
-import { siteContent } from "./content.js?v=20260624-day1";
+import { siteContent } from "./content.js?v=20260625-day2";
 
 const app = document.querySelector("#app");
 const currentPage = document.body.dataset.page || "home";
@@ -87,6 +87,23 @@ function renderEntry(entry, featured = false) {
           ${entry.reviewQuestions.map((item) => `<li>${item}</li>`).join("")}
         </ul>
       </section>
+      ${
+        entry.assessment
+          ? `
+      <section>
+        <h4>${entry.assessment.headline}</h4>
+        <ul>
+          ${entry.assessment.scores.map((item) => `<li>${item}</li>`).join("")}
+        </ul>
+        <div class="coach-note">
+          <strong>关键纠正</strong>
+          <ul>
+            ${entry.assessment.corrections.map((item) => `<li>${item}</li>`).join("")}
+          </ul>
+        </div>
+      </section>`
+          : ""
+      }
       <section>
         <h4>提醒</h4>
         <ul>
@@ -194,7 +211,7 @@ function renderHome() {
       </div>
       <div class="hero-panel">
         <p>主线项目</p>
-        <strong>AI 客服助手</strong>
+        <strong>AI 叉车售后客服</strong>
         <span>从 Python 后端走到 LLM 应用落地</span>
         <div class="hero-panel-line"></div>
         <small>目标是做出一个可展示多轮对话、知识库问答、工具调用和工程化能力的完整项目。</small>
